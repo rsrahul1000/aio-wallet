@@ -2,16 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './assets/css/aio-wallet-style.css';
+// import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import { Provider } from 'react-redux';
+import store from './redux/redux-toolkit';
+import 'bootstrap-daterangepicker/daterangepicker.css';
+import Honeybadger from '@honeybadger-io/js';
+import ErrorBoundary from '@honeybadger-io/react';
+
+Honeybadger.configure({
+  apiKey: '3f3902fa',
+  environment: 'production',
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  // <ErrorBoundary honeybadger={Honeybadger}>
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
+  // </ErrorBoundary>,
+  document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
